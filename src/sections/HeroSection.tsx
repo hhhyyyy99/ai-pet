@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, type PointerEvent as ReactPointerEvent } from 'react'
 import { ArrowRight, Check, Play } from 'lucide-react'
 import { AnimatePresence, motion, useMotionValue, useReducedMotion, useSpring } from 'motion/react'
-import { characters, petStates } from '../content'
+import { petStates } from '../content'
 import { BrowserFrame } from '../components/BrowserFrame'
 
 interface HeroSectionProps {
@@ -90,16 +90,20 @@ export function HeroSection({ onWaitlist }: HeroSectionProps) {
         </BrowserFrame>
 
         <motion.div className="hero-pet-anchor" style={{ x, y }}>
-          <motion.img
-            className="hero-pet"
-            src={characters[0].image}
-            alt="原创 ai-pet 角色 Pico，站在浏览器页面与对话面板之间"
-            width={1024}
-            height={1536}
-            initial={reduceMotion ? false : { opacity: 0, y: 30, scale: 0.96 }}
-            animate={reduceMotion ? { opacity: 1 } : { opacity: 1, ...feedbackMotion }}
-            transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
-          />
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.img
+              key={feedback.state}
+              className="hero-pet"
+              src={feedback.image}
+              alt={`Pico 正在${feedback.label}：${feedback.detail}`}
+              width={1024}
+              height={1536}
+              initial={reduceMotion ? false : { opacity: 0, y: 18, scale: 0.97 }}
+              animate={reduceMotion ? { opacity: 1 } : { opacity: 1, ...feedbackMotion }}
+              exit={reduceMotion ? undefined : { opacity: 0, y: -10, scale: 0.98 }}
+              transition={{ duration: 0.42, ease: [0.16, 1, 0.3, 1] }}
+            />
+          </AnimatePresence>
         </motion.div>
 
         <div className="hero-status" aria-label="桌宠常驻浏览器状态演示">

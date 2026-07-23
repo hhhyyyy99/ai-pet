@@ -673,27 +673,6 @@ img {
   filter: drop-shadow(0 20px 22px rgba(0, 0, 0, 0.4));
 }
 
-.state-pet-reading {
-  transform: rotate(-2deg) translateX(-12px);
-}
-
-.state-pet-working {
-  transform: translateX(8px) rotate(2deg);
-}
-
-.state-pet-confirm {
-  transform: translateY(10px);
-}
-
-.state-pet-success {
-  transform: translateY(-4px) rotate(-2deg);
-}
-
-.state-pet-error {
-  filter: grayscale(0.65) drop-shadow(0 20px 22px rgba(0, 0, 0, 0.4));
-  transform: translateY(12px);
-}
-
 .state-icon {
   position: absolute;
   top: 20px;
@@ -710,10 +689,6 @@ img {
 
 .state-confirm .state-icon {
   color: var(--warning);
-}
-
-.state-error .state-icon {
-  color: var(--danger);
 }
 
 .state-card-copy {

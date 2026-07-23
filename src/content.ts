@@ -1,4 +1,7 @@
 import picoImage from './assets/characters/pico.webp'
+import picoIdleImage from './assets/characters/pico-idle.webp'
+import picoReadingImage from './assets/characters/pico-reading.webp'
+import picoWorkingImage from './assets/characters/pico-working.webp'
 import mossImage from './assets/characters/moss.webp'
 import boltImage from './assets/characters/bolt.webp'
 
@@ -49,12 +52,10 @@ export const characters: CharacterProfile[] = [
 ]
 
 export const petStates = [
-  { label: '待机', detail: '常驻浏览器边缘', state: 'idle' },
-  { label: '理解', detail: '抬头读取当前页面', state: 'reading' },
-  { label: '执行', detail: '用动作反馈进度', state: 'working' },
-  { label: '等待确认', detail: '停下来看向你', state: 'confirm' },
-  { label: '完成', detail: '给出清晰反馈', state: 'success' },
-  { label: '需要重试', detail: '说明问题并等待', state: 'error' },
+  { label: '待机', detail: '常驻浏览器边缘', state: 'idle', image: picoIdleImage },
+  { label: '理解', detail: '俯身读取当前页面', state: 'reading', image: picoReadingImage },
+  { label: '执行', detail: '移动并完成网页步骤', state: 'working', image: picoWorkingImage },
+  { label: '等待确认', detail: '指向关键动作并询问你', state: 'confirm', image: picoImage },
 ]
 
 export const faqItems = [
