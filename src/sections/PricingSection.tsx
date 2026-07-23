@@ -76,9 +76,6 @@ export function PricingSection({ onWaitlist }: PricingSectionProps) {
                 </li>
               ))}
             </ul>
-            <div className="trial-note">
-              不会自动扣费，到期后自动回到 Free。模型 API 费用由对应 Provider 收取。
-            </div>
           </Reveal>
         </div>
 

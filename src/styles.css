@@ -1898,16 +1898,6 @@ img {
   color: #768189;
 }
 
-.trial-note {
-  margin-top: 28px;
-  padding: 16px;
-  border-left: 2px solid var(--accent);
-  color: var(--text-secondary);
-  background: #111519;
-  font-size: 12px;
-  line-height: 1.7;
-}
-
 .pricing-cta {
   display: flex;
   align-items: center;
