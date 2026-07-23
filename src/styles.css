@@ -917,32 +917,36 @@ img {
   margin-top: 28px;
 }
 
-.custom-pet-actions {
-  display: grid;
-  justify-items: start;
-  gap: 10px;
+.custom-pet-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
   margin-top: 28px;
+  padding: 16px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
 }
 
-.custom-pet-upload {
-  position: relative;
+.custom-pet-note > svg {
+  flex: 0 0 auto;
+  margin-top: 2px;
+  color: var(--accent);
 }
 
-.custom-pet-upload:has(input:focus-visible) {
-  outline: 2px solid var(--accent);
-  outline-offset: 4px;
+.custom-pet-note span {
+  display: grid;
+  gap: 4px;
 }
 
-.custom-file-name {
-  max-width: 100%;
+.custom-pet-note strong {
+  color: var(--text-primary);
+  font-size: 15px;
+}
+
+.custom-pet-note small {
   color: var(--text-secondary);
-  font-size: 12px;
-  overflow-wrap: anywhere;
-}
-
-.custom-pet-error {
-  color: var(--danger);
   font-size: 13px;
+  line-height: 1.55;
 }
 
 .custom-character-profile .character-states {
@@ -2486,8 +2490,6 @@ img {
   .character-profile h3 { font-size: 42px; }
 
   .character-profile blockquote { font-size: 17px; }
-
-  .custom-pet-upload { width: 100%; }
 
   .character-states { flex-wrap: wrap; }
 

@@ -1,41 +1,20 @@
-import {
-  useEffect,
-  useState,
-  type ChangeEvent,
-  type CSSProperties,
-  type KeyboardEvent,
-} from 'react'
+import { useState, type CSSProperties, type KeyboardEvent } from 'react'
 import { ImagePlus, Upload } from 'lucide-react'
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import { characters, type CharacterId } from '../content'
-import { CUSTOM_PET_ACCEPT, validatePetAsset } from '../lib/petAsset'
 import { Reveal } from '../components/Reveal'
 
 type CharacterSelection = CharacterId | 'custom'
-
-interface CustomPetAsset {
-  name: string
-  url: string
-}
 
 const selectionOrder: CharacterSelection[] = [...characters.map((item) => item.id), 'custom']
 
 export function CharacterSection() {
   const [selected, setSelected] = useState<CharacterSelection>('pico')
-  const [customAsset, setCustomAsset] = useState<CustomPetAsset | null>(null)
-  const [assetError, setAssetError] = useState('')
   const reduceMotion = useReducedMotion()
   const character = selected === 'custom'
     ? null
     : characters.find((item) => item.id === selected) ?? characters[0]
   const characterColor = character?.color ?? '#b7f34a'
-
-  useEffect(
-    () => () => {
-      if (customAsset) URL.revokeObjectURL(customAsset.url)
-    },
-    [customAsset],
-  )
 
   const selectAndFocus = (selection: CharacterSelection) => {
     setSelected(selection)
@@ -59,22 +38,6 @@ export function CharacterSection() {
     if (nextIndex === null) return
     event.preventDefault()
     selectAndFocus(selectionOrder[nextIndex])
-  }
-
-  const handleAssetChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const file = event.currentTarget.files?.[0]
-    if (!file) return
-
-    const error = validatePetAsset(file)
-    if (error) {
-      setAssetError(error)
-      event.currentTarget.value = ''
-      return
-    }
-
-    setAssetError('')
-    setCustomAsset({ name: file.name, url: URL.createObjectURL(file) })
-    event.currentTarget.value = ''
   }
 
   return (
@@ -143,31 +106,22 @@ export function CharacterSection() {
                   />
                 ) : (
                   <motion.div
-                    key={customAsset?.url ?? 'custom-empty'}
+                    key="custom-empty"
                     className="custom-pet-preview"
                     initial={reduceMotion ? false : { opacity: 0, x: 18 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -14 }}
                     transition={{ duration: 0.24 }}
                   >
-                    {customAsset ? (
-                      <img
-                        src={customAsset.url}
-                        alt={`自定义桌宠预览：${customAsset.name}`}
-                        width={1024}
-                        height={1536}
-                      />
-                    ) : (
-                      <div className="custom-pet-empty">
-                        <ImagePlus size={42} strokeWidth={1.5} />
-                        <strong>你的角色会出现在这里</strong>
-                        <span>PNG / WebP / GIF</span>
-                      </div>
-                    )}
+                    <div className="custom-pet-empty">
+                      <ImagePlus size={42} strokeWidth={1.5} />
+                      <strong>你的角色会出现在这里</strong>
+                      <span>PNG / WebP / GIF</span>
+                    </div>
                   </motion.div>
                 )}
               </AnimatePresence>
-              {(character || customAsset) && <span className="character-shadow" aria-hidden="true" />}
+              {character && <span className="character-shadow" aria-hidden="true" />}
             </div>
 
             <AnimatePresence mode="wait">
@@ -219,21 +173,12 @@ export function CharacterSection() {
                       <dd>名字、语气、习惯与反馈动作</dd>
                     </div>
                   </dl>
-                  <div className="custom-pet-actions">
-                    <label className="button button-small custom-pet-upload">
-                      <Upload size={17} />
-                      选择角色图片
-                      <input
-                        className="visually-hidden"
-                        type="file"
-                        accept={CUSTOM_PET_ACCEPT}
-                        onChange={handleAssetChange}
-                      />
-                    </label>
-                    <span className="custom-file-name">
-                      {customAsset ? customAsset.name : '文件只在当前页面本地预览'}
+                  <div className="custom-pet-note">
+                    <Upload size={19} aria-hidden="true" />
+                    <span>
+                      <strong>支持导入自定义角色</strong>
+                      <small>在 ai-pet 产品内配置图片、动作与角色个性</small>
                     </span>
-                    {assetError && <p className="custom-pet-error" role="alert">{assetError}</p>}
                   </div>
                   <div className="character-states" aria-label="可自定义的反馈动作">
                     {['待机', '思考', '完成', '确认'].map((state) => <span key={state}>{state}</span>)}
