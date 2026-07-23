@@ -8,7 +8,7 @@ interface BrowserFrameProps {
   className?: string
 }
 
-export function BrowserFrame({ children, title, url = 'demo.ai-pet.app', className = '' }: BrowserFrameProps) {
+export function BrowserFrame({ children, title, url = 'app.ai-pet.com', className = '' }: BrowserFrameProps) {
   return (
     <div className={`browser-frame ${className}`}>
       <div className="browser-chrome" aria-hidden="true">

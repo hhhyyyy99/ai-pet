@@ -75,7 +75,7 @@ export function HeroSection({ onWaitlist }: HeroSectionProps) {
             <p>固定在浏览器边缘，根据当前页面抬头、思考、执行，或停下来等待确认。</p>
             <mark>Pico 正在读取你选中的内容</mark>
           </div>
-          <div className="hero-chat-panel" aria-label="ai-pet 对话演示">
+          <div className="hero-chat-panel" aria-label="ai-pet 页面对话">
             <div className="chat-panel-head">
               <span className="chat-pet-dot" />
               <span>Pico</span>
@@ -106,7 +106,7 @@ export function HeroSection({ onWaitlist }: HeroSectionProps) {
           </AnimatePresence>
         </motion.div>
 
-        <div className="hero-status" aria-label="桌宠常驻浏览器状态演示">
+        <div className="hero-status" aria-label="桌宠常驻浏览器状态">
           <span className="status-light" />
           <span className="hero-status-copy">
             <small>常驻当前标签页</small>
@@ -148,7 +148,7 @@ export function HeroSection({ onWaitlist }: HeroSectionProps) {
           </button>
           <a className="button button-ghost" href="#presence">
             <Play size={17} fill="currentColor" />
-            观看演示
+            查看工作方式
           </a>
         </motion.div>
       </div>

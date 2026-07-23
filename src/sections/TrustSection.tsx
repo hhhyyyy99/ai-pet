@@ -74,7 +74,7 @@ export function TrustSection() {
             <div className={automationEnabled ? 'privacy-status status-enabled' : 'privacy-status'}>
               <ShieldCheck size={21} />
               <div>
-                <strong>{automationEnabled ? '自动化已在演示中开启' : '当前不会执行网页操作'}</strong>
+                <strong>{automationEnabled ? '自动化已开启' : '当前不会执行网页操作'}</strong>
                 <span>{automationEnabled ? '中高风险动作仍会请求确认' : '页面聊天与内容理解仍然可用'}</span>
               </div>
             </div>

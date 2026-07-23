@@ -86,7 +86,7 @@ export function PricingSection({ onWaitlist }: PricingSectionProps) {
           <button className="button" type="button" onClick={onWaitlist}>
             加入候补名单
           </button>
-          <p>第一版表单仅演示交互，不会保存邮箱。</p>
+          <p>候补名单通道即将开放，当前页面不会保存邮箱。</p>
         </div>
       </div>
     </section>

@@ -9,7 +9,7 @@ export function normalizeEmail(email: string): string {
 export function resolveWaitlistOutcome(email: string, seenEmails: ReadonlySet<string>): WaitlistOutcome {
   const normalized = normalizeEmail(email)
   if (!emailPattern.test(normalized)) return 'invalid'
-  if (normalized === 'error@demo.test') return 'error'
-  if (normalized === 'duplicate@demo.test' || seenEmails.has(normalized)) return 'duplicate'
+  if (normalized === 'error@ai-pet.test') return 'error'
+  if (normalized === 'duplicate@ai-pet.test' || seenEmails.has(normalized)) return 'duplicate'
   return 'success'
 }

@@ -13,8 +13,8 @@ export function ChatSection() {
         </Reveal>
 
         <Reveal delay={0.1}>
-          <BrowserFrame title="服务条款" url="docs.example.test/terms" className="chat-browser">
-            <div className="context-demo">
+          <BrowserFrame title="服务条款" url="docs.ai-pet.com/terms" className="chat-browser">
+            <div className="context-scene">
               <article className="terms-page">
                 <span className="mono-label">SERVICE TERMS</span>
                 <h3>价格与方案调整</h3>
@@ -32,7 +32,7 @@ export function ChatSection() {
                 <img src={characters[0].image} alt="" width={1024} height={1536} />
               </div>
 
-              <aside className="context-chat" aria-label="页面上下文聊天演示">
+              <aside className="context-chat" aria-label="页面上下文聊天">
                 <div className="context-chat-head">
                   <div>
                     <strong>Pico</strong>

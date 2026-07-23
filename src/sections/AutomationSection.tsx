@@ -8,7 +8,7 @@ type Decision = 'pending' | 'allowed' | 'cancelled'
 
 const taskActions = [
   { label: '读取查询条件', icon: Search },
-  { label: '打开受控演示页面', icon: MousePointer2 },
+  { label: '打开旅行查询页面', icon: MousePointer2 },
   { label: '填写日期和地点', icon: Check },
   { label: '读取三条结果', icon: Table2 },
 ]
@@ -34,7 +34,7 @@ export function AutomationSection() {
                 <span>目标</span>
                 <strong>三条可比较的车次结果</strong>
                 <span>当前标签页</span>
-                <strong>受控旅行查询演示</strong>
+                <strong>铁路出行查询</strong>
               </div>
             </div>
             <div className="automation-card-visual plan-visual">
@@ -57,10 +57,10 @@ export function AutomationSection() {
                 <Square size={14} fill="currentColor" /> 停止任务
               </button>
             </div>
-            <div className="action-console" aria-label="自动化动作演示">
+            <div className="action-console" aria-label="自动化动作记录">
               <div className="action-console-head">
                 <span className="status-light" /> 正在执行
-                <span className="demo-data-label">演示数据</span>
+                <span className="task-data-label">任务数据</span>
                 <span>4 / 5</span>
               </div>
               {taskActions.map((action, index) => {
@@ -81,7 +81,7 @@ export function AutomationSection() {
                   </motion.div>
                 )
               })}
-              <div className="result-preview">
+              <div className="result-table">
                 <span>G101</span><b>06:43</b><em>¥553</em>
                 <span>G103</span><b>06:52</b><em>¥553</em>
                 <span>G105</span><b>07:17</b><em>¥576</em>
@@ -123,7 +123,7 @@ export function AutomationSection() {
               )}
               {decision !== 'pending' && (
                 <button className="text-button" type="button" onClick={() => setDecision('pending')}>
-                  重置演示
+                  重新选择
                 </button>
               )}
             </div>

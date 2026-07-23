@@ -98,10 +98,10 @@ export function WaitlistDialog({ open, onClose }: WaitlistDialogProps) {
   const message = {
     idle: '输入邮箱，在开放试用时收到通知。',
     invalid: '请输入有效的邮箱地址。',
-    loading: '正在模拟加入候补名单。',
-    success: '演示完成。当前版本不会提交或保存邮箱。',
-    duplicate: '演示状态：这个邮箱已经在候补名单中。',
-    error: '演示状态：暂时无法提交，请稍后再试。',
+    loading: '正在处理候补登记。',
+    success: '候补名单通道即将开放，当前页面未提交或保存邮箱。',
+    duplicate: '这个邮箱已在当前页面登记。',
+    error: '暂时无法处理，请稍后再试。',
   }[state]
 
   return (
@@ -135,7 +135,7 @@ export function WaitlistDialog({ open, onClose }: WaitlistDialogProps) {
               {state === 'success' ? <Check size={24} /> : 'a'}
             </div>
             <h2 id="waitlist-title">加入 ai-pet 候补名单</h2>
-            <p>第一版表单为交互演示，不会发送或保存你的邮箱。</p>
+            <p>候补名单通道即将开放，当前页面不会发送或保存你的邮箱。</p>
 
             {state !== 'success' && (
               <form onSubmit={submit} noValidate>
@@ -147,7 +147,7 @@ export function WaitlistDialog({ open, onClose }: WaitlistDialogProps) {
                     name="email"
                     type="email"
                     autoComplete="email"
-                    placeholder="you@example.com"
+                    placeholder="name@company.com"
                     value={email}
                     aria-invalid={state === 'invalid'}
                     aria-describedby="waitlist-message"

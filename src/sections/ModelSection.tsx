@@ -5,15 +5,15 @@ import { BrowserFrame } from '../components/BrowserFrame'
 import { Reveal } from '../components/Reveal'
 
 type Provider = 'OpenAI' | 'Anthropic' | 'Custom'
-type ConnectionState = 'idle' | 'testing' | 'success'
+type ConnectionState = 'idle' | 'checking' | 'success'
 
 export function ModelSection() {
   const [provider, setProvider] = useState<Provider>('Custom')
   const [connection, setConnection] = useState<ConnectionState>('idle')
   const reduceMotion = useReducedMotion()
 
-  const testConnection = () => {
-    setConnection('testing')
+  const checkConnection = () => {
+    setConnection('checking')
     window.setTimeout(() => setConnection('success'), 900)
   }
 
@@ -77,13 +77,13 @@ export function ModelSection() {
                 </div>
 
                 <div className="connection-row">
-                  <button className="button button-dark" type="button" onClick={testConnection} disabled={connection === 'testing'}>
-                    {connection === 'testing' ? (
+                  <button className="button button-dark" type="button" onClick={checkConnection} disabled={connection === 'checking'}>
+                    {connection === 'checking' ? (
                       <LoaderCircle className="spin" size={17} />
                     ) : connection === 'success' ? (
                       <Check size={17} />
                     ) : null}
-                    {connection === 'testing' ? '正在测试' : connection === 'success' ? '连接成功' : '测试连接'}
+                    {connection === 'checking' ? '正在检查' : connection === 'success' ? '连接成功' : '检查连接'}
                   </button>
                   <motion.span
                     className={`connection-status connection-${connection}`}
@@ -91,8 +91,8 @@ export function ModelSection() {
                     animate={{ opacity: 1 }}
                     key={connection}
                   >
-                    {connection === 'idle' && '等待测试'}
-                    {connection === 'testing' && '正在验证 Endpoint 与模型 ID'}
+                    {connection === 'idle' && '等待检查'}
+                    {connection === 'checking' && '正在验证 Endpoint 与模型 ID'}
                     {connection === 'success' && '218 ms，模型可以用于新会话'}
                   </motion.span>
                 </div>
