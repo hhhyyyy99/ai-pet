@@ -3,13 +3,14 @@ import { ImagePlus, Upload } from 'lucide-react'
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import { characters, type CharacterId } from '../content'
 import { Reveal } from '../components/Reveal'
+import { SpritePet } from '../components/SpritePet'
 
 type CharacterSelection = CharacterId | 'custom'
 
 const selectionOrder: CharacterSelection[] = [...characters.map((item) => item.id), 'custom']
 
 export function CharacterSection() {
-  const [selected, setSelected] = useState<CharacterSelection>('pico')
+  const [selected, setSelected] = useState<CharacterSelection>('xiaotai')
   const reduceMotion = useReducedMotion()
   const character = selected === 'custom'
     ? null
@@ -45,7 +46,7 @@ export function CharacterSection() {
       <div className="shell">
         <Reveal className="section-intro character-intro">
           <h2 id="characters-title">带上你自己的桌宠。</h2>
-          <p>Pico、Moss 和 Bolt 只是内置模板。你可以导入自己的角色，并定义名字、性格、语气和反馈动作。</p>
+          <p>小钛、Moss 和 Bolt 只是内置模板。你可以导入自己的角色，并定义名字、性格、语气和反馈动作。</p>
         </Reveal>
 
         <div className="character-stage" style={{ '--character-color': characterColor } as CSSProperties}>
@@ -92,7 +93,22 @@ export function CharacterSection() {
           >
             <div className="character-visual">
               <AnimatePresence mode="wait">
-                {character ? (
+                {character?.visual === 'sprite' ? (
+                  <motion.div
+                    key={character.id}
+                    className="character-sprite-motion"
+                    initial={reduceMotion ? false : { opacity: 0, x: 18 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -14 }}
+                    transition={{ duration: 0.24 }}
+                  >
+                    <SpritePet
+                      state="idle"
+                      className="character-sprite"
+                      label={`${character.name}，${character.role}`}
+                    />
+                  </motion.div>
+                ) : character ? (
                   <motion.img
                     key={character.id}
                     src={character.image}

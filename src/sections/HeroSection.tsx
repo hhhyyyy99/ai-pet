@@ -3,6 +3,7 @@ import { ArrowRight, Check, Play } from 'lucide-react'
 import { AnimatePresence, motion, useMotionValue, useReducedMotion, useSpring } from 'motion/react'
 import { petStates } from '../content'
 import { BrowserFrame } from '../components/BrowserFrame'
+import { SpritePet } from '../components/SpritePet'
 
 interface HeroSectionProps {
   onWaitlist: () => void
@@ -73,12 +74,12 @@ export function HeroSection({ onWaitlist }: HeroSectionProps) {
             <span className="page-kicker">PRODUCT NOTES</span>
             <strong>切换页面，它也还在。</strong>
             <p>固定在浏览器边缘，根据当前页面抬头、思考、执行，或停下来等待确认。</p>
-            <mark>Pico 正在读取你选中的内容</mark>
+            <mark>小钛正在读取你选中的内容</mark>
           </div>
           <div className="hero-chat-panel" aria-label="ai-pet 页面对话">
             <div className="chat-panel-head">
               <span className="chat-pet-dot" />
-              <span>Pico</span>
+              <span>小钛</span>
               <span className="model-label">Custom / atlas-3</span>
             </div>
             <div className="chat-context">已读取当前页面与选中文本</div>
@@ -91,18 +92,20 @@ export function HeroSection({ onWaitlist }: HeroSectionProps) {
 
         <motion.div className="hero-pet-anchor" style={{ x, y }}>
           <AnimatePresence mode="wait" initial={false}>
-            <motion.img
+            <motion.div
               key={feedback.state}
-              className="hero-pet"
-              src={feedback.image}
-              alt={`Pico 正在${feedback.label}：${feedback.detail}`}
-              width={1024}
-              height={1536}
+              className="hero-pet-motion"
               initial={reduceMotion ? false : { opacity: 0, y: 18, scale: 0.97 }}
               animate={reduceMotion ? { opacity: 1 } : { opacity: 1, ...feedbackMotion }}
               exit={reduceMotion ? undefined : { opacity: 0, y: -10, scale: 0.98 }}
               transition={{ duration: 0.42, ease: [0.16, 1, 0.3, 1] }}
-            />
+            >
+              <SpritePet
+                state={feedback.spriteState}
+                className="hero-pet"
+                label={`小钛正在${feedback.label}：${feedback.detail}`}
+              />
+            </motion.div>
           </AnimatePresence>
         </motion.div>
 

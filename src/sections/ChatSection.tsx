@@ -1,7 +1,7 @@
 import { CheckCircle2, FileText, Link2, Quote } from 'lucide-react'
-import { characters } from '../content'
 import { BrowserFrame } from '../components/BrowserFrame'
 import { Reveal } from '../components/Reveal'
+import { SpritePet } from '../components/SpritePet'
 
 export function ChatSection() {
   return (
@@ -29,13 +29,13 @@ export function ChatSection() {
 
               <div className="context-bridge" aria-hidden="true">
                 <span />
-                <img src={characters[0].image} alt="" width={1024} height={1536} />
+                <SpritePet state="review" className="context-pet" />
               </div>
 
               <aside className="context-chat" aria-label="页面上下文聊天">
                 <div className="context-chat-head">
                   <div>
-                    <strong>Pico</strong>
+                    <strong>小钛</strong>
                     <span>Custom / atlas-3</span>
                   </div>
                   <span className="bound-status">

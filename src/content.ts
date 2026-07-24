@@ -1,11 +1,9 @@
-import picoImage from './assets/characters/pico.webp'
-import picoIdleImage from './assets/characters/pico-idle.webp'
-import picoReadingImage from './assets/characters/pico-reading.webp'
-import picoWorkingImage from './assets/characters/pico-working.webp'
+import xiaotaiSpriteSheet from './assets/characters/xiaotai-spritesheet.webp'
 import mossImage from './assets/characters/moss.webp'
 import boltImage from './assets/characters/bolt.webp'
+import type { SpritePetState } from './components/SpritePet'
 
-export type CharacterId = 'pico' | 'moss' | 'bolt'
+export type CharacterId = 'xiaotai' | 'moss' | 'bolt'
 
 export interface CharacterProfile {
   id: CharacterId
@@ -14,20 +12,22 @@ export interface CharacterProfile {
   tone: string
   quote: string
   image: string
+  visual: 'sprite' | 'image'
   color: string
   states: string[]
 }
 
 export const characters: CharacterProfile[] = [
   {
-    id: 'pico',
-    name: 'Pico',
+    id: 'xiaotai',
+    name: '小钛',
     role: '好奇的研究搭档',
     tone: '轻快，会主动追问',
     quote: '我找到了三种说法。要先看最可靠的来源，还是先看结论？',
-    image: picoImage,
+    image: xiaotaiSpriteSheet,
+    visual: 'sprite',
     color: '#b7f34a',
-    states: ['探头', '扫描', '记录'],
+    states: ['待机', '理解', '执行', '确认'],
   },
   {
     id: 'moss',
@@ -36,6 +36,7 @@ export const characters: CharacterProfile[] = [
     tone: '温和，结构清楚',
     quote: '我已经按主题整理好了。重复信息放在最后一组。',
     image: mossImage,
+    visual: 'image',
     color: '#7f9470',
     states: ['收集', '分类', '归档'],
   },
@@ -46,16 +47,24 @@ export const characters: CharacterProfile[] = [
     tone: '简短，直接确认',
     quote: '表单已填写。提交前需要你确认一次。',
     image: boltImage,
+    visual: 'image',
     color: '#5176d8',
     states: ['启动', '等待', '完成'],
   },
 ]
 
-export const petStates = [
-  { label: '待机', detail: '常驻浏览器边缘', state: 'idle', image: picoIdleImage },
-  { label: '理解', detail: '俯身读取当前页面', state: 'reading', image: picoReadingImage },
-  { label: '执行', detail: '移动并完成网页步骤', state: 'working', image: picoWorkingImage },
-  { label: '等待确认', detail: '指向关键动作并询问你', state: 'confirm', image: picoImage },
+export const petStates: Array<{
+  label: string
+  detail: string
+  state: 'idle' | 'reading' | 'working' | 'confirm' | 'success' | 'error'
+  spriteState: SpritePetState
+}> = [
+  { label: '待机', detail: '常驻浏览器边缘', state: 'idle', spriteState: 'idle' },
+  { label: '理解', detail: '专注读取当前页面', state: 'reading', spriteState: 'review' },
+  { label: '执行', detail: '持续处理网页步骤', state: 'working', spriteState: 'running' },
+  { label: '等待确认', detail: '停下来询问你', state: 'confirm', spriteState: 'waiting' },
+  { label: '完成', detail: '用动作给出反馈', state: 'success', spriteState: 'jumping' },
+  { label: '需要重试', detail: '说明问题并等待', state: 'error', spriteState: 'failed' },
 ]
 
 export const faqItems = [

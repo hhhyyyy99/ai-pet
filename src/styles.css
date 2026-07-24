@@ -69,6 +69,14 @@ img {
   max-width: 100%;
 }
 
+.sprite-pet {
+  display: block;
+  overflow: hidden;
+  aspect-ratio: 192 / 208;
+  background-repeat: no-repeat;
+  background-size: 800% 1100%;
+}
+
 ::selection {
   color: #10130d;
   background: var(--accent);
@@ -539,10 +547,16 @@ img {
   will-change: transform;
 }
 
-.hero-pet {
+.hero-pet-motion {
+  display: grid;
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  align-items: end;
+  justify-items: center;
+}
+
+.hero-pet {
+  width: 116%;
   filter: drop-shadow(0 32px 25px rgba(0, 0, 0, 0.42));
 }
 
@@ -665,11 +679,9 @@ img {
 
 .state-pet {
   position: absolute;
-  right: 16px;
-  bottom: -54px;
-  width: 230px;
-  height: 340px;
-  object-fit: contain;
+  right: 24px;
+  bottom: 16px;
+  width: 250px;
   filter: drop-shadow(0 20px 22px rgba(0, 0, 0, 0.4));
 }
 
@@ -689,6 +701,10 @@ img {
 
 .state-confirm .state-icon {
   color: var(--warning);
+}
+
+.state-error .state-icon {
+  color: var(--danger);
 }
 
 .state-card-copy {
@@ -812,6 +828,17 @@ img {
   width: min(420px, 78%);
   height: 590px;
   object-fit: contain;
+  filter: drop-shadow(0 35px 28px rgba(0, 0, 0, 0.45));
+}
+
+.character-sprite-motion {
+  position: relative;
+  z-index: 2;
+  width: min(420px, 78%);
+}
+
+.character-sprite {
+  width: 100%;
   filter: drop-shadow(0 35px 28px rgba(0, 0, 0, 0.45));
 }
 
@@ -1290,12 +1317,10 @@ img {
   pointer-events: none;
 }
 
-.context-bridge img {
+.context-pet {
   position: relative;
   z-index: 2;
   width: 140px;
-  height: 220px;
-  object-fit: contain;
   filter: drop-shadow(0 16px 15px rgba(0, 0, 0, 0.42));
 }
 
@@ -2553,7 +2578,7 @@ img {
     transform: none;
   }
 
-  .context-bridge img { width: 100px; height: 160px; }
+  .context-pet { width: 100px; }
 
   .context-capabilities { grid-template-columns: 1fr; }
 

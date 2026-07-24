@@ -1,14 +1,17 @@
 import { useRef } from 'react'
-import { AlertTriangle, CircleEllipsis, ScanText, Sparkles } from 'lucide-react'
+import { AlertTriangle, Check, CircleEllipsis, RotateCcw, ScanText, Sparkles } from 'lucide-react'
 import { motion, useReducedMotion, useScroll, useTransform } from 'motion/react'
 import { petStates } from '../content'
 import { Reveal } from '../components/Reveal'
+import { SpritePet } from '../components/SpritePet'
 
 const stateIcons = {
   idle: Sparkles,
   reading: ScanText,
   working: CircleEllipsis,
   confirm: AlertTriangle,
+  success: Check,
+  error: RotateCcw,
 }
 
 export function PresenceSection() {
@@ -33,11 +36,9 @@ export function PresenceSection() {
             return (
               <article key={item.state} className={`state-card state-${item.state}`}>
                 <div className="state-card-visual">
-                  <img
-                    src={item.image}
-                    alt={`${item.label}状态的 Pico：${item.detail}`}
-                    width={1024}
-                    height={1536}
+                  <SpritePet
+                    state={item.spriteState}
+                    label={`${item.label}状态的小钛：${item.detail}`}
                     className="state-pet"
                   />
                   <div className="state-icon" aria-hidden="true">
