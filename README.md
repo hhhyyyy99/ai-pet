@@ -18,16 +18,20 @@ npm run build
 npm run preview
 ```
 
-The production build is written to `dist/` and uses relative asset paths for static hosting.
+The production build is written to `dist/` and uses relative asset paths by default. The GitHub Pages workflow builds with `/ai-pet/` as the project-site base path.
 
-## Waitlist demo
+## Waitlist
 
 The waitlist is intentionally local-only. It makes no network requests and does not persist email addresses.
 
 - Any new valid email: success
-- `duplicate@demo.test`: duplicate state
-- `error@demo.test`: error state
+- The reserved duplicate address: duplicate state
+- The reserved error address: error state
 
-## Custom pet demo
+## Custom pets
 
-The character section accepts PNG, WebP, and GIF files up to 10 MB for a local preview. Files are rendered through an object URL, never uploaded or persisted, and released when the preview changes or the page closes.
+The character section explains that ai-pet supports PNG, WebP, GIF, and complete character packages. The landing page does not select, upload, or persist local files.
+
+## Deployment
+
+The public repository contains only this landing application. Pushing `main` runs tests, type checking, and the GitHub Pages build before deploying `dist/`.
