@@ -1924,15 +1924,7 @@ img {
 }
 
 .pricing-cta {
-  display: flex;
-  align-items: center;
-  gap: 18px;
   margin-top: 28px;
-}
-
-.pricing-cta p {
-  color: var(--text-secondary);
-  font-size: 12px;
 }
 
 /* FAQ and footer */
@@ -2652,11 +2644,6 @@ img {
   .pricing-plan { padding: 30px 22px; }
 
   .price-line strong { font-size: 50px; }
-
-  .pricing-cta {
-    align-items: flex-start;
-    flex-direction: column;
-  }
 
   .faq-layout { display: block; }
 
