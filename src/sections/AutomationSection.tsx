@@ -38,7 +38,14 @@ export function AutomationSection() {
               </div>
             </div>
             <div className="automation-card-visual plan-visual">
-              <img src={characters[2].image} alt="Bolt 正在分析任务" width={1024} height={1536} />
+              <img
+                src={characters[2].image}
+                alt="Bolt 正在分析任务"
+                width={1024}
+                height={1536}
+                loading="lazy"
+                decoding="async"
+              />
               <div className="plan-orbit" aria-hidden="true">
                 <span>查询</span>
                 <ChevronRight size={18} />

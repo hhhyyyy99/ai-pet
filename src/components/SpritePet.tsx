@@ -1,6 +1,13 @@
 import { useEffect, useState } from 'react'
 import { useReducedMotion } from 'motion/react'
 import xiaotaiSpriteSheet from '../assets/characters/xiaotai-spritesheet.webp'
+import xiaotaiSpriteSheetAvif from '../assets/characters/xiaotai-spritesheet.avif'
+
+const spriteBackgroundImage =
+  typeof CSS !== 'undefined' &&
+  CSS.supports('background-image', 'image-set(url("x.avif") type("image/avif"))')
+    ? `image-set(url("${xiaotaiSpriteSheetAvif}") type("image/avif"), url("${xiaotaiSpriteSheet}") type("image/webp"))`
+    : `url("${xiaotaiSpriteSheet}")`
 
 const spriteAnimations = {
   idle: { row: 0, durations: [280, 110, 110, 140, 140, 320] },
@@ -53,7 +60,7 @@ export function SpritePet({ state, className = '', label }: SpritePetProps) {
       aria-label={label}
       aria-hidden={label ? undefined : true}
       style={{
-        backgroundImage: `url(${xiaotaiSpriteSheet})`,
+        backgroundImage: spriteBackgroundImage,
         backgroundPosition: `${(frame / 7) * 100}% ${animation.row * 10}%`,
       }}
     />
